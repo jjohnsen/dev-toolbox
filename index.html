@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.1/angular.min.js" type="text/javascript"></script>
+		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css">
+	</head>
+	<body>
+		<div ng-app="texttools" ng-controller="Base64Controller as ctrl">
+			<h1>Real time base64 encode and decode</h1>
+			Input:
+			<textarea ng-model="ctrl.input" ng-change="ctrl.convert()"></textarea>
+
+			<div class="btn-group" role="group" aria-label="...">
+				<button type="button" class="btn btn-default">Encode Base64</button>
+				<button type="button" class="btn btn-default">Decode Base64</button>
+			</div>
+
+			<hr/>
+			Output:
+			<textarea ng-model="ctrl.output" readonly="readonly"></textarea>
+			{{ctrl.output}}
+		</div>
+		
+		<h2>encodeURI</h2>
+		<p>Use encodeURI when you want a working URL</p>
+		
+		<h2>encodeURIComponent</h2>
+		<p>Use encodeURIComponent when you want to encode a URL parameter</p>
+		
+		<script>
+			angular.module('texttools', [])
+				.controller('Base64Controller', function() {
+					this.convert = function() {
+						console.log("convert", this);
+						this.output = btoa(this.input);
+						this.output = atob(this.input);
+					}
+				});
+		</script>
+	</body>
+</html>
+			
